@@ -1,6 +1,7 @@
 import pygame
 import settings
 
+# Drawing the grid on screen
 def draw(screen):
     for i in range(settings.block, settings.width + 1, settings.block):
         pygame.draw.line(screen, (255, 255, 255), [0, i], [settings.height, i])
