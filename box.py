@@ -1,6 +1,8 @@
 import settings
 import random
 
+# Main class 
+# Global parameters of the boxes 
 class Box:
     def __init__(self, x, y, img):
         self.X = x
@@ -15,6 +17,9 @@ class Box:
         self.img = eval("settings.box" + str(self.hp) + "Img")
         return False
 
+# Sequence that generates the ammount of boxes and choose there possitions 
+# Ammount of boxes picked randomly from 70 to 100 
+# Position of the boxes are random exept for the plases where players starts 
 def createBoxes():
     number = random.randint(70, 100)
     map = []
