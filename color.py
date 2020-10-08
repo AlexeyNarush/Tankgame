@@ -1,3 +1,5 @@
+# Codes of the colors in GRB system 
+# Can use by listed color name 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 GRAY = (125, 125, 125)
