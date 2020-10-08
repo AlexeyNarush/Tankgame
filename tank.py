@@ -3,7 +3,10 @@ from color import *
 import threading
 import pygame
 import time
+
+#Tank class with settings and functions 
 class Tank:
+    # Main patameters of tanks
 	def __init__(self, coorX, coorY, img, direct, r):
 		self.X = coorX
 		self.Y = coorY
@@ -14,6 +17,7 @@ class Tank:
 		self.direct = direct
 		self.reverse = r
 		self.drive = False
+	# Moving functions for tanks
 	def move(self, direct, screen, grid, boxes, enemy):
 		if (direct == 1):
 			self.img = pygame.transform.rotate(self.simg, 180)
@@ -28,7 +32,8 @@ class Tank:
 			return
 		if self.drive == False:
 			self.thread = threading.Thread(target=self.smoothmove, args = (screen, grid, boxes, enemy))
-			self.thread.start()	 
+			self.thread.start()	
+	# Function  to make tank move smooth 
 	def smoothmove(self, screen, grid, boxes , enemy):
 		dx = 0
 		dy = 0
@@ -42,6 +47,7 @@ class Tank:
 			dx = self.reverse
 		x = self.X + dx * 50 
 		y = self.Y + dy * 50
+		# This part of code not letting tank to go throught boxes and each other 
 		if (enemy.X, enemy.Y) == (x, y):
 			return
 		for i in boxes:
@@ -51,6 +57,7 @@ class Tank:
 			return
 		self.drive = True
 		i = 1
+		# Function prevents tank image from stucking and redraws the grid
 		while (i <= 50):
 			circB = pygame.draw.rect(screen, BLACK, (self.X, self.Y, settings.block, settings.block))
 			grid.draw(screen)
@@ -62,12 +69,18 @@ class Tank:
 			pygame.display.update(pygame.Rect(self.X, self.Y, settings.block, settings.block))
 		self.drive = False
 		return
+	# Ment to give sheald to hited player and protect him from getting hit again instantly 
 	def Sheald(self,):
 		stime = time.time()
 		self.sheald = 2
 		while (time.time() - stime < 2):
 			self.sheald = 2 - (time.time() - stime)
 		self.sheald = 0
+	
+
+
+
+
 	
 
 
