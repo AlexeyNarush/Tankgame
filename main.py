@@ -41,7 +41,7 @@ pygame.font.init()
 myfont = pygame.font.SysFont('Comic Sans MS', 30)
 game = False
 
-# 'GOtablo' function made to show the winner and instructiopns after the end of match 
+# 'GOtablo' function made to show the winner and instructions after the end of match 
 
 def GOtablo():
     global game 
