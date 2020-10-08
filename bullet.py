@@ -2,6 +2,8 @@ import threading
 import pygame
 from color import *
 import settings
+
+# Main part of the class 
 class Bullet:
     def __init__(self, x, y, tank, enemy, boxes, screen, grid):
         dx = 0
@@ -25,6 +27,8 @@ class Bullet:
         self.clock = pygame.time.Clock()
         self.thread = threading.Thread(target=self.move, args=(tank, enemy, boxes, screen, grid))
         self.thread.start()
+
+    # Function that makes bullet move 
     def move(self, tank, enemy, boxes, screen, grid):
         while True:
             pygame.draw.circle(screen,BLACK, (self.X, self.Y), 5)
@@ -48,9 +52,11 @@ class Bullet:
             pygame.draw.circle(screen, YELLOW, (self.X, self.Y), 5)
             pygame.display.update(pygame.Rect(self.X - 10, self.Y - 10, 20, 20))
             self.clock.tick(120)
-            
+
+    # Functino that makes sure that bullet hit the tank or box        
     def collision(self, object):
         if (self.X >= object.X and self.X <= object.X + 50) and (self.Y >= object.Y and self.Y <= object.Y + 50):
             return True
         return False
+        
         
